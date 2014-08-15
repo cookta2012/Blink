@@ -2,6 +2,7 @@ package com.ewyboy.blink.Items.Item;
 
 import com.ewyboy.blink.CreativeTabs.BlinkCreativeTabs;
 import com.ewyboy.blink.Items.Techical.ItemInfo;
+import com.ewyboy.blink.Network.Proxies.ClientProxy;
 import com.ewyboy.blink.Textures.TexturePath;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,6 +14,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+
+import java.util.List;
 
 public class OffTaker extends Item {
 
@@ -121,8 +124,20 @@ public class OffTaker extends Item {
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hit) {
         player.jump();
         spawnEffectsForClock(world,player,x,y,z);
-
         return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation)
+    {
+        info.add("Press shift to show info");
+
+        if (ClientProxy.shiftPressed())
+        {
+            info.add("Launches you up in the air");
+            info.add("Scales on the players jump-height");
+        }
     }
 
     @SideOnly(Side.CLIENT)

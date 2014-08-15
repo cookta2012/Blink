@@ -15,12 +15,12 @@ public class Block {
         addBlocks();
     }
 
-    private static void registerBlocks() {
+    public static void registerBlocks() {
         Swapper = new Swapper().setBlockName(BlockInfo.SwapperBlockName);
         Marker = new Marker().setBlockName(BlockInfo.MarkerBlockName);
     }
 
-    private static void addBlocks() {
+    public static void addBlocks() {
         GameRegistry.registerBlock(Swapper, BlockInfo.SwapperKey);
         GameRegistry.registerBlock(Marker, BlockInfo.MarkerKey);
     }

@@ -31,9 +31,14 @@ public class Blitzer extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation)
     {
+        info.add("Press shift to show info");
+
         if (ClientProxy.shiftPressed())
         {
-            info.add("§e§oTraveling has never been funnier");
+            info.add("Telport trough 1 block thick walls");
+            info.add("Sneak to go down");
+            info.add("Jump to go up");
+            info.add("Sprinting to go trough 2 block thick walls");
         }
     }
 
@@ -133,8 +138,6 @@ public class Blitzer extends Item {
         world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, "mob.endermen.portal", 0.5F, 0.4F + 0.8F, false);
     }
 
-   //for ewyboy
-   //give the cords of the block the player is going to stand in
    public boolean canPlayerFitInSpace(World world, EntityPlayer player, double x, double y , double z){
        return world.getBlock((int)x, (int)y, (int)z) == Blocks.air && world.getBlock((int)x, (int)y+1,(int) z) == Blocks.air;
    }
@@ -157,22 +160,22 @@ public class Blitzer extends Item {
 
             if (player.isSprinting()) {
                 if (test == 1) {
-                    if(canPlayerFitInSpace(world ,player ,x-2,y-1,z) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x-2.2,y-1,z) == true) {
                         X = X - blink * 2;
                     }
                 }
                 if (test == 3) {
-                    if(canPlayerFitInSpace(world ,player ,x+2,y-1,z) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x+2.2,y-1,z) == true) {
                         X = X + blink * 2;
                     }
                 }
                 if (test == 2) {
-                    if(canPlayerFitInSpace(world ,player ,x,y-1,z-2) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x,y-1,z-2.2) == true) {
                         Z = Z - blink * 2;
                     }
                 }
                 if (test == 0) {
-                    if(canPlayerFitInSpace(world ,player ,x,y-1,z+2) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x,y-1,z+2.2) == true) {
                         Z = Z + blink * 2;
                     }
                 }
@@ -186,22 +189,22 @@ public class Blitzer extends Item {
                 }
             } else {
                 if (test == 1) {
-                    if(canPlayerFitInSpace(world ,player ,x-1,y-1,z) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x-1,y-1.2,z) == true) {
                         X = X - blink;
                     }
                 }
                 if (test == 3) {
-                    if(canPlayerFitInSpace(world ,player ,x+1,y-1,z) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x+1,y-1.2,z) == true) {
                         X = X + blink;
                     }
                 }
                 if (test == 2) {
-                    if(canPlayerFitInSpace(world ,player ,x,y-1,z-1) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x,y-1,z-1.2) == true) {
                         Z = Z - blink;
                     }
                 }
                 if (test == 0) {
-                    if(canPlayerFitInSpace(world ,player ,x,y-1,z+1) == true) {
+                    if(canPlayerFitInSpace(world ,player ,x,y-1,z+1.2) == true) {
                         Z = Z + blink;
                     }
                 }
@@ -212,8 +215,6 @@ public class Blitzer extends Item {
         }
         return true;
     }
-
-
 
     @SideOnly(Side.CLIENT)
     private IIcon BlitzerIcons;

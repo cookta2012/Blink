@@ -6,6 +6,7 @@ import com.ewyboy.blink.CreativeTabs.BlinkCreativeTabs;
 import com.ewyboy.blink.Info.ModInfo;
 import com.ewyboy.blink.Items.Techical.Item;
 import com.ewyboy.blink.Network.Proxies.CommonProxy;
+import com.ewyboy.blink.Utillity.LogHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -22,7 +23,8 @@ public class Blink {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void PreInit (FMLPreInitializationEvent event) {
+    public void preInit (FMLPreInitializationEvent event) {
+        LogHelper.info("Pre Initialization Complete!");
     }
 
     @Mod.EventHandler
@@ -31,11 +33,12 @@ public class Blink {
         Item.Init();
         Block.Init();
         CraftingRecipes.init();
+        LogHelper.info("Initialization Complete!");
     }
 
     @Mod.EventHandler
-    public void ModsLoaded (FMLPreInitializationEvent event){
-
+    public void modsLoaded (FMLPreInitializationEvent event){
+        LogHelper.info("Post Initialization Complete!");
     }
 
 }
